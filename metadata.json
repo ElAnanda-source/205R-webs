@@ -1,0 +1,6 @@
+{
+  "name": "205R",
+  "description": "205R — Independent Trading & Market Research Platform featuring a live performance dashboard, historical trading journal, six-pillar methodology, and PIN-protected owner administration.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

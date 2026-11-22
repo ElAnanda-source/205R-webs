@@ -1,0 +1,550 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Michroma", "Segoe UI", sans-serif;
+  --font-sans: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  --color-obsidian: #020305;
+  --color-void: #05080D;
+  --color-panel-dark: #090F18;
+  --color-panel-elevated: #0D1723;
+  --color-electric-cyan: #00E5FF;
+  --color-lightning-blue: #168BFF;
+  --color-ice-white: #EAF7FF;
+  --color-muted-silver: #8194A9;
+}
+
+@layer base {
+  html {
+    background-color: #020305;
+    color: #EAF7FF;
+    font-family: "Inter", "Segoe UI", system-ui, sans-serif;
+    scroll-behavior: smooth;
+    overflow-x: clip;
+  }
+
+  body {
+    background-color: #020305;
+    color: #EAF7FF;
+    font-family: "Inter", "Segoe UI", system-ui, sans-serif;
+    overflow-x: clip;
+  }
+
+  /* Michroma mandatory for primary brand typography, headings, navigation & buttons */
+  h1,
+  h2,
+  h3,
+  h4,
+  button {
+    font-family: "Michroma", "Segoe UI", sans-serif;
+    font-weight: 400;
+  }
+
+  /* Body prose, execution commentary & forms remain crisp in Inter */
+  p,
+  dd,
+  li,
+  input,
+  select,
+  textarea {
+    font-family: "Inter", "Segoe UI", system-ui, sans-serif;
+  }
+
+  p,
+  dd,
+  li {
+    line-height: 1.68;
+  }
+}
+
+.font-michroma {
+  font-family: "Michroma", "Segoe UI", sans-serif;
+  font-weight: 400;
+}
+
+.font-inter {
+  font-family: "Inter", "Segoe UI", system-ui, sans-serif;
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Fluid responsive display typography scaled for Michroma's wide glyphs down to 320px */
+.cyber-hero-h1 {
+  font-family: "Michroma", "Segoe UI", sans-serif;
+  font-weight: 400;
+  font-size: clamp(1.32rem, 4.6vw, 3.1rem);
+  line-height: 1.24;
+  letter-spacing: 0.045em;
+  overflow-wrap: break-word;
+}
+
+.cyber-page-h1 {
+  font-family: "Michroma", "Segoe UI", sans-serif;
+  font-weight: 400;
+  font-size: clamp(1.18rem, 3.8vw, 2.25rem);
+  line-height: 1.26;
+  letter-spacing: 0.05em;
+  overflow-wrap: break-word;
+}
+
+.cyber-h2 {
+  font-family: "Michroma", "Segoe UI", sans-serif;
+  font-weight: 400;
+  font-size: clamp(1rem, 2.5vw, 1.55rem);
+  line-height: 1.32;
+  letter-spacing: 0.06em;
+  overflow-wrap: break-word;
+}
+
+/* ============================================================================
+   BLACKOUT NEO-CYBER LAYERED SURFACES & LIGHTING
+   ============================================================================ */
+
+.cyber-glass {
+  position: relative;
+  background: linear-gradient(155deg, rgba(13, 23, 35, 0.72) 0%, rgba(5, 8, 13, 0.92) 55%, rgba(2, 3, 5, 0.96) 100%);
+  border: 1px solid rgba(22, 139, 255, 0.16);
+  box-shadow:
+    inset 0 1px 0 rgba(234, 247, 255, 0.07),
+    0 24px 64px -22px rgba(0, 0, 0, 0.96),
+    0 0 36px -18px rgba(0, 229, 255, 0.12);
+  backdrop-filter: blur(14px);
+}
+
+.cyber-glass-signature {
+  position: relative;
+  background: linear-gradient(155deg, rgba(13, 23, 35, 0.85) 0%, rgba(5, 8, 13, 0.95) 60%, rgba(2, 3, 5, 0.98) 100%);
+  border: 1px solid rgba(0, 229, 255, 0.34);
+  box-shadow:
+    inset 0 1px 0 rgba(0, 229, 255, 0.2),
+    0 24px 70px -20px rgba(0, 0, 0, 0.98),
+    0 0 42px -18px rgba(0, 229, 255, 0.24);
+  backdrop-filter: blur(16px);
+}
+
+.cyber-surface-dark {
+  background: linear-gradient(180deg, rgba(9, 15, 24, 0.72) 0%, rgba(2, 3, 5, 0.92) 100%);
+  border: 1px solid rgba(129, 148, 169, 0.14);
+  box-shadow:
+    inset 0 1px 0 rgba(234, 247, 255, 0.04),
+    0 18px 46px -24px rgba(0, 0, 0, 0.95);
+}
+
+.cyber-hairline-top {
+  height: 1px;
+  background: linear-gradient(90deg, rgba(0, 229, 255, 0.45) 0%, rgba(22, 139, 255, 0.18) 45%, transparent 100%);
+}
+
+/* Interactive edge light sheen */
+.cyber-interactive {
+  transition:
+    transform 220ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 220ms ease,
+    box-shadow 220ms ease,
+    background-color 220ms ease;
+}
+
+.cyber-interactive:hover {
+  border-color: rgba(0, 229, 255, 0.44);
+  box-shadow:
+    inset 0 1px 0 rgba(0, 229, 255, 0.22),
+    0 26px 60px -22px rgba(0, 0, 0, 0.98),
+    0 0 32px -14px rgba(0, 229, 255, 0.26);
+}
+
+@keyframes cyber-float-gentle {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+.cyber-float {
+  animation: cyber-float-gentle 7.5s ease-in-out infinite;
+}
+
+/* ============================================================================
+   CINEMATIC PAGE TRANSITION OVERLAY (~600ms Blackout + Cyan Sweep)
+   ============================================================================ */
+
+@keyframes page-sweep-beam {
+  0% {
+    transform: translateX(-125%) skewX(-18deg);
+    opacity: 0;
+  }
+  25% {
+    opacity: 0.95;
+  }
+  75% {
+    opacity: 0.85;
+  }
+  100% {
+    transform: translateX(135%) skewX(-18deg);
+    opacity: 0;
+  }
+}
+
+@keyframes page-scanline-drift {
+  0% {
+    transform: translateY(-25%);
+    opacity: 0;
+  }
+  45% {
+    opacity: 0.45;
+  }
+  100% {
+    transform: translateY(120%);
+    opacity: 0;
+  }
+}
+
+@keyframes page-content-emerge {
+  0% {
+    opacity: 0.08;
+    transform: translateY(10px) scale(0.994);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.cyber-transition-beam {
+  animation: page-sweep-beam 520ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.cyber-transition-scanline {
+  animation: page-scanline-drift 520ms linear forwards;
+}
+
+.cyber-page-enter {
+  animation: page-content-emerge 360ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* ============================================================================
+   205R GLOBAL NEON FLICKER TYPOGRAPHY SYSTEM (BLACKOUT CYAN + LIGHTNING BLUE)
+   ============================================================================ */
+
+@keyframes neon-flicker-primary {
+  0%, 100% {
+    opacity: 1;
+    text-shadow:
+      0 0 10px rgba(0, 229, 255, 0.5),
+      0 0 26px rgba(22, 139, 255, 0.34),
+      0 0 48px rgba(0, 229, 255, 0.14);
+  }
+  18% {
+    opacity: 0.97;
+    text-shadow:
+      0 0 12px rgba(0, 229, 255, 0.65),
+      0 0 32px rgba(22, 139, 255, 0.46),
+      0 0 54px rgba(0, 229, 255, 0.22);
+  }
+  21% {
+    opacity: 0.85;
+    text-shadow:
+      0 0 4px rgba(0, 229, 255, 0.22),
+      0 0 12px rgba(22, 139, 255, 0.16);
+  }
+  23% {
+    opacity: 1;
+    text-shadow:
+      0 0 14px rgba(0, 229, 255, 0.68),
+      0 0 34px rgba(22, 139, 255, 0.46);
+  }
+  25% {
+    opacity: 0.9;
+    text-shadow:
+      0 0 6px rgba(0, 229, 255, 0.3),
+      0 0 16px rgba(22, 139, 255, 0.22);
+  }
+  28%, 67% {
+    opacity: 1;
+    text-shadow:
+      0 0 10px rgba(0, 229, 255, 0.52),
+      0 0 24px rgba(22, 139, 255, 0.36);
+  }
+  70% {
+    opacity: 0.92;
+    text-shadow:
+      0 0 6px rgba(0, 229, 255, 0.32),
+      0 0 16px rgba(22, 139, 255, 0.22);
+  }
+  73% {
+    opacity: 1;
+    text-shadow:
+      0 0 13px rgba(0, 229, 255, 0.6),
+      0 0 30px rgba(22, 139, 255, 0.42);
+  }
+}
+
+@keyframes neon-flicker-secondary {
+  0%, 100% {
+    opacity: 0.98;
+    text-shadow:
+      0 0 7px rgba(0, 229, 255, 0.32),
+      0 0 18px rgba(22, 139, 255, 0.22);
+  }
+  34% {
+    opacity: 1;
+    text-shadow:
+      0 0 10px rgba(0, 229, 255, 0.46),
+      0 0 24px rgba(22, 139, 255, 0.3);
+  }
+  37% {
+    opacity: 0.89;
+    text-shadow:
+      0 0 3px rgba(0, 229, 255, 0.16),
+      0 0 10px rgba(22, 139, 255, 0.12);
+  }
+  40%, 82% {
+    opacity: 0.99;
+    text-shadow:
+      0 0 8px rgba(0, 229, 255, 0.36),
+      0 0 20px rgba(22, 139, 255, 0.24);
+  }
+  84% {
+    opacity: 0.93;
+    text-shadow: 0 0 4px rgba(0, 229, 255, 0.2);
+  }
+}
+
+@keyframes neon-flicker-body {
+  0%, 100% {
+    opacity: 0.98;
+    text-shadow: 0 0 5px rgba(0, 229, 255, 0.08);
+  }
+  44% {
+    opacity: 1;
+    text-shadow: 0 0 7px rgba(0, 229, 255, 0.14);
+  }
+  46% {
+    opacity: 0.95;
+    text-shadow: 0 0 2px rgba(22, 139, 255, 0.06);
+  }
+}
+
+@keyframes neon-flicker-nav {
+  0%, 100% {
+    opacity: 0.96;
+    text-shadow: 0 0 7px rgba(0, 229, 255, 0.26);
+  }
+  29% {
+    opacity: 1;
+    text-shadow: 0 0 11px rgba(0, 229, 255, 0.38);
+  }
+  31% {
+    opacity: 0.88;
+    text-shadow: 0 0 3px rgba(0, 229, 255, 0.14);
+  }
+  33% {
+    opacity: 1;
+    text-shadow: 0 0 10px rgba(0, 229, 255, 0.34);
+  }
+}
+
+@keyframes neon-flicker-metric {
+  0%, 100% {
+    opacity: 0.98;
+    text-shadow:
+      0 0 9px rgba(0, 229, 255, 0.38),
+      0 0 20px rgba(22, 139, 255, 0.22);
+  }
+  51% {
+    opacity: 1;
+    text-shadow:
+      0 0 12px rgba(0, 229, 255, 0.52),
+      0 0 26px rgba(22, 139, 255, 0.3);
+  }
+  53% {
+    opacity: 0.9;
+    text-shadow: 0 0 4px rgba(0, 229, 255, 0.18);
+  }
+  55% {
+    opacity: 1;
+    text-shadow:
+      0 0 10px rgba(0, 229, 255, 0.44),
+      0 0 22px rgba(22, 139, 255, 0.26);
+  }
+}
+
+@keyframes neon-chart-pulse {
+  0%, 100% {
+    opacity: 0.9;
+    filter: drop-shadow(0 0 4px rgba(0, 229, 255, 0.48));
+  }
+  50% {
+    opacity: 1;
+    filter: drop-shadow(0 0 10px rgba(0, 229, 255, 0.85));
+  }
+}
+
+h1,
+.neon-primary {
+  color: #EAF7FF;
+  animation: neon-flicker-primary 6.8s ease-in-out infinite;
+  will-change: opacity;
+}
+
+h2,
+h3,
+.neon-secondary {
+  animation: neon-flicker-secondary 8.3s ease-in-out infinite;
+}
+
+p,
+li,
+dt,
+dd,
+.neon-body {
+  animation: neon-flicker-body 11s ease-in-out infinite;
+}
+
+header a,
+header button,
+nav a,
+footer a,
+main button,
+.neon-nav {
+  transition: text-shadow 180ms ease, color 180ms ease, border-color 180ms ease, background-color 180ms ease, transform 180ms ease;
+  animation: neon-flicker-nav 7.4s ease-in-out infinite;
+}
+
+header a:hover,
+header button:hover,
+nav a:hover,
+footer a:hover,
+main button:hover,
+.neon-nav:hover {
+  text-shadow:
+    0 0 12px rgba(0, 229, 255, 0.8),
+    0 0 24px rgba(22, 139, 255, 0.55);
+}
+
+.neon-metric {
+  font-variant-numeric: tabular-nums;
+  animation: neon-flicker-metric 6.1s ease-in-out infinite;
+}
+
+.neon-chart-line {
+  animation: neon-chart-pulse 4.8s ease-in-out infinite;
+}
+
+/* Staggered organic timing */
+section:nth-of-type(2n) h2,
+article:nth-child(2n) h3,
+div:nth-child(2n) > .neon-metric {
+  animation-delay: -1.9s;
+  animation-duration: 7.7s;
+}
+
+section:nth-of-type(3n) h2,
+article:nth-child(3n) h3,
+div:nth-child(3n) > .neon-metric {
+  animation-delay: -3.6s;
+  animation-duration: 9.1s;
+}
+
+p:nth-of-type(2n),
+li:nth-of-type(2n) {
+  animation-delay: -2.4s;
+  animation-duration: 12.1s;
+}
+
+p:nth-of-type(3n),
+li:nth-of-type(3n) {
+  animation-delay: -5.1s;
+  animation-duration: 9.8s;
+}
+
+nav a:nth-child(2n),
+button:nth-child(2n) {
+  animation-delay: -1.3s;
+  animation-duration: 8.6s;
+}
+
+nav a:nth-child(3n),
+button:nth-child(3n) {
+  animation-delay: -4.1s;
+  animation-duration: 6.9s;
+}
+
+@media (max-width: 767px) {
+  h1,
+  .neon-primary {
+    text-shadow:
+      0 0 6px rgba(0, 229, 255, 0.36),
+      0 0 14px rgba(22, 139, 255, 0.24);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  h1,
+  h2,
+  h3,
+  p,
+  li,
+  dt,
+  dd,
+  header a,
+  header button,
+  nav a,
+  footer a,
+  main button,
+  .neon-primary,
+  .neon-secondary,
+  .neon-body,
+  .neon-nav,
+  .neon-metric,
+  .neon-chart-line,
+  .cyber-float,
+  .cyber-transition-beam,
+  .cyber-transition-scanline,
+  .cyber-page-enter {
+    animation: none !important;
+  }
+
+  h1,
+  .neon-primary {
+    opacity: 1;
+    text-shadow:
+      0 0 8px rgba(0, 229, 255, 0.45),
+      0 0 20px rgba(22, 139, 255, 0.3);
+  }
+
+  h2,
+  h3,
+  .neon-secondary,
+  .neon-metric {
+    opacity: 1;
+    text-shadow: 0 0 7px rgba(0, 229, 255, 0.28);
+  }
+}
+
+/* Custom blackout scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #020305;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #0D1723;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #00E5FF;
+}
