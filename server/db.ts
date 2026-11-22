@@ -20,7 +20,9 @@ import {
   generateHistoricalDraftTrades,
 } from '../src/utils/seedTrades.ts';
 
-const DATA_DIR = path.resolve(process.cwd(), 'data');
+const DATA_DIR = process.env.DATA_DIR
+  ? path.resolve(process.env.DATA_DIR)
+  : path.resolve(process.cwd(), 'data');
 export const UPLOADS_DIR = path.resolve(DATA_DIR, 'uploads');
 
 export function ensureDataDirectories(): void {
